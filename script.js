@@ -1,19 +1,6 @@
 let currentImageIndex = 0;
 let visibleImages = [];
 
-const galleryImages = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1606216174052-f3d0b8e4bfa0?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1558636508-e0db3814bd20?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1585254475919-7ac8620988e3?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1565538810185-dbc477fc2e4b?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1573139662582-8e80e3849f72?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1584095268862-d1f17dabf8e8?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1540575467063-178f50002cbc?w=400&h=300&fit=crop'
-];
-
 document.addEventListener('DOMContentLoaded', function() {
   setupMenuToggle();
   updateVisibleImages();
@@ -76,45 +63,57 @@ function updateVisibleImages() {
   });
 }
 
+// ===== FIXED LIGHTBOX =====
 function openLightbox(index) {
   const galleryItems = document.querySelectorAll('.gallery-item img');
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.querySelector('.lightbox-image');
 
   if (galleryItems[index]) {
-    lightboxImage.src = galleryItems[index].src; // Set the image source
-    lightbox.style.display = 'block'; // Show the lightbox
+    lightboxImage.src = galleryItems[index].src;
+    currentImageIndex = index;
+    lightbox.classList.add('active');  // ← FIX: Add class instead of style.display
+    document.body.style.overflow = 'hidden'; // Prevent page scroll
   }
 }
 
 function closeLightbox(event) {
   const lightbox = document.getElementById('lightbox');
+  // Only close if clicking background, not buttons/image
   if (event.target === lightbox || event.target.classList.contains('lightbox-close')) {
-    lightbox.style.display = 'none'; // Hide the lightbox
+    lightbox.classList.remove('active');  // ← FIX: Remove class instead of style.display
+    document.body.style.overflow = 'auto';  // Allow page scroll again
   }
 }
 
 function nextImage(event) {
   event.stopPropagation();
-  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-  document.querySelector('.lightbox-image').src = galleryImages[currentImageIndex];
+  const galleryItems = document.querySelectorAll('.gallery-item img');
+  currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+  document.querySelector('.lightbox-image').src = galleryItems[currentImageIndex].src;
 }
 
 function previousImage(event) {
   event.stopPropagation();
-  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-  document.querySelector('.lightbox-image').src = galleryImages[currentImageIndex];
+  const galleryItems = document.querySelectorAll('.gallery-item img');
+  currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+  document.querySelector('.lightbox-image').src = galleryItems[currentImageIndex].src;
 }
 
+// ===== KEYBOARD CONTROLS (Now Works!) =====
 document.addEventListener('keydown', function(event) {
   const lightbox = document.getElementById('lightbox');
-  if (lightbox.classList.contains('active')) {
+  if (lightbox.classList.contains('active')) {  // ← Now checks actual state
     if (event.key === 'ArrowRight') nextImage(event);
     if (event.key === 'ArrowLeft') previousImage(event);
-    if (event.key === 'Escape') closeLightbox({ target: lightbox });
+    if (event.key === 'Escape') {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
   }
 });
 
+// ===== FORM SUBMISSION WITH FORMSPREE =====
 function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -136,8 +135,45 @@ function handleFormSubmit(event) {
   console.log('Budget:', budget);
   console.log('Message:', message);
 
-  const subject = `Photography Inquiry from ${name}`;
-  const body = `
+  // Show loading state
+  const submitBtn = form.querySelector('.form-submit');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
+
+  // Prepare form data
+  const formData = new FormData(form);
+
+  // Try Formspree first (better for web)
+  fetch('https://formspree.io/f/mvzjbzbq', {  // ← UPDATE THIS WITH YOUR FORMSPREE ID
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Form sent via Formspree successfully!');
+      showSuccessMessage();
+      form.reset();
+      
+      // Reset button
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      
+      // Scroll to success message
+      smoothScroll('#home');
+    } else {
+      throw new Error('Formspree failed');
+    }
+  })
+  .catch(error => {
+    console.log('Formspree failed, trying mailto fallback...');
+    
+    // Fallback to mailto if Formspree fails
+    const subject = `Photography Inquiry from ${name}`;
+    const body = `
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
@@ -147,15 +183,18 @@ Budget: ${budget}
 
 Message:
 ${message}
-  `;
-
-  const mailtoLink = `mailto:contact@momentscaptured.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = mailtoLink;
-
-  showSuccessMessage();
-  form.reset();
+    `;
+    
+    const mailtoLink = `mailto:mytechlearning85@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+    
+    // Reset button
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  });
 }
 
+// ===== CUSTOM SUCCESS MESSAGE (Your Original Style) =====
 function showSuccessMessage() {
   const form = document.getElementById('contactForm');
   const successMsg = document.createElement('div');
@@ -179,6 +218,7 @@ function showSuccessMessage() {
   }, 4000);
 }
 
+// ===== ANIMATIONS =====
 const style = document.createElement('style');
 style.textContent = `
   @keyframes slideDown {
