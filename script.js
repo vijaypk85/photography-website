@@ -77,33 +77,20 @@ function updateVisibleImages() {
 }
 
 function openLightbox(index) {
-  updateVisibleImages();
-  currentImageIndex = index;
+  const galleryItems = document.querySelectorAll('.gallery-item img');
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.querySelector('.lightbox-image');
-  
-  const visibleItems = document.querySelectorAll('.gallery-item:not([style*="display: none"])');
-  let actualIndex = 0;
-  
-  for (let i = 0; i < document.querySelectorAll('.gallery-item').length; i++) {
-    if (document.querySelectorAll('.gallery-item')[i] === visibleItems[index]) {
-      actualIndex = i;
-      break;
-    }
-  }
 
-  if (actualIndex >= 0 && actualIndex < galleryImages.length) {
-    lightboxImage.src = galleryImages[actualIndex];
-    currentImageIndex = actualIndex;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
+  if (galleryItems[index]) {
+    lightboxImage.src = galleryItems[index].src; // Set the image source
+    lightbox.style.display = 'block'; // Show the lightbox
   }
 }
 
 function closeLightbox(event) {
-  if (event.target.id === 'lightbox') {
-    document.getElementById('lightbox').classList.remove('active');
-    document.body.style.overflow = 'auto';
+  const lightbox = document.getElementById('lightbox');
+  if (event.target === lightbox || event.target.classList.contains('lightbox-close')) {
+    lightbox.style.display = 'none'; // Hide the lightbox
   }
 }
 

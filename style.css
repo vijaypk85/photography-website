@@ -804,3 +804,28 @@ section {
   border-radius: 50%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+/* Lightbox Modal */
+/* Lightbox Modal */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center; /* Centers horizontally */
+  align-items: center;    /* Centers vertically */
+  z-index: 1000;
+}
+
+.lightbox.active {
+  display: flex; /* Enables flexbox for centering */
+}
+
+.lightbox-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
