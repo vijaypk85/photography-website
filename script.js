@@ -23,7 +23,12 @@ function setupMenuToggle() {
 }
 
 function smoothScroll(target) {
-  event.preventDefault();
+  // Only call preventDefault if we're inside a real, still-active event
+  // (e.g. a nav link click). Skip it when called later, like after a
+  // fetch() resolves, where the global "event" no longer exists.
+  if (typeof event !== 'undefined' && event && typeof event.preventDefault === 'function') {
+    event.preventDefault();
+  }
   const element = document.querySelector(target);
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
@@ -152,42 +157,29 @@ function handleFormSubmit(event) {
       'Accept': 'application/json'
     }
   })
-  .then(response => {
+  .then(async response => {
     if (response.ok) {
       console.log('Form sent via Formspree successfully!');
       showSuccessMessage();
       form.reset();
-      
+
       // Reset button
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
-      
-      // Scroll to success message
-      smoothScroll('#home');
     } else {
-      throw new Error('Formspree failed');
+      // Log the exact reason Formspree rejected the submission
+      const errorBody = await response.json().catch(() => null);
+      console.error('Formspree responded with an error. Status:', response.status, 'Body:', errorBody);
+      throw new Error('Formspree failed with status ' + response.status);
     }
   })
   .catch(error => {
-    console.log('Formspree failed, trying mailto fallback...');
-    
-    // Fallback to mailto if Formspree fails
-    const subject = `Photography Inquiry from ${name}`;
-    const body = `
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Event Type: ${eventType}
-Event Date: ${eventDate}
-Budget: ${budget}
+    // Log the REAL error so we can see what's actually going wrong
+    console.error('Formspree submission failed:', error);
 
-Message:
-${message}
-    `;
-    
-    const mailtoLink = `mailto:mytechlearning85@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
-    
+    // Show a visible error message instead of silently redirecting to mailto
+    showErrorMessage();
+
     // Reset button
     submitBtn.textContent = originalText;
     submitBtn.disabled = false;
@@ -215,7 +207,31 @@ function showSuccessMessage() {
   setTimeout(() => {
     successMsg.style.animation = 'slideUp 0.5s ease';
     setTimeout(() => successMsg.remove(), 500);
-  }, 4000);
+  }, 6000);
+}
+
+// ===== ERROR MESSAGE (shown if Formspree submission fails) =====
+function showErrorMessage() {
+  const form = document.getElementById('contactForm');
+  const errorMsg = document.createElement('div');
+  errorMsg.style.cssText = `
+    background: #e74c3c;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    animation: slideDown 0.5s ease;
+  `;
+  errorMsg.innerHTML = 'Sorry, something went wrong sending your inquiry. Please try again, or email us directly at <a href="mailto:mytechlearning85@gmail.com" style="color:#fff;text-decoration:underline;">mytechlearning85@gmail.com</a>.';
+
+  form.insertBefore(errorMsg, form.firstChild);
+
+  setTimeout(() => {
+    errorMsg.style.animation = 'slideUp 0.5s ease';
+    setTimeout(() => errorMsg.remove(), 500);
+  }, 6000);
 }
 
 // ===== ANIMATIONS =====

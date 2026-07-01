@@ -116,10 +116,11 @@ body {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%),
-              url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=80');
-  background-size: cover;
+  background-color: #1a1a1a;
+  background-image: url('images/gallery/birthday-01.jpg');
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100vh;
   display: flex;
@@ -804,4 +805,3 @@ section {
   border-radius: 50%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
