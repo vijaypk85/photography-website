@@ -273,7 +273,7 @@ section {
 }
 
 .feature-card p {
-  color: var(--gray);
+  color: #555555;
   font-size: 0.95rem;
 }
 
@@ -500,6 +500,105 @@ section {
   font-size: 0.9rem;
   color: var(--accent);
   font-weight: 600;
+}
+
+/* Packages */
+.packages {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+  color: var(--white);
+}
+
+.packages .section-title {
+  color: var(--white);
+}
+
+.packages-subtitle {
+  text-align: center;
+  max-width: 600px;
+  margin: -30px auto 50px;
+  color: #bdc3c7;
+  font-size: 1.05rem;
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.package-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  padding: 40px 30px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.package-card.premium {
+  border-color: var(--accent);
+}
+
+.package-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.package-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.package-card.premium h3 {
+  color: var(--accent);
+}
+
+.package-starting {
+  font-size: 0.85rem;
+  color: #bdc3c7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.package-price {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.package-price span {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #bdc3c7;
+}
+
+.package-note {
+  text-align: center;
+  max-width: 600px;
+  margin: 40px auto 0;
+  padding: 15px 20px;
+  border: 1px dashed var(--primary);
+  border-radius: 8px;
+  color: #ecf0f1;
+  font-size: 0.95rem;
+}
+
+.package-note strong {
+  color: var(--primary);
 }
 
 /* Testimonials */
