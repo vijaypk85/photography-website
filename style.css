@@ -64,6 +64,23 @@ body {
   font-size: 20px;
 }
 
+.logo-jora {
+  font-weight: 800;
+  background: linear-gradient(90deg, #ff3cac, #ff9f43, #f6e05e, #38d9a9, #4dabf7, #9775fa, #ff3cac);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: joraShine 6s linear infinite;
+}
+
+@keyframes joraShine {
+  to {
+    background-position: 300% center;
+  }
+}
+
 .nav-links {
   display: flex;
   list-style: none;
