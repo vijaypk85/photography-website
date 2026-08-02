@@ -294,6 +294,13 @@ section {
   font-size: 0.95rem;
 }
 
+.feature-note {
+  margin-top: 8px;
+  font-size: 0.8rem !important;
+  color: var(--gray) !important;
+  font-style: italic;
+}
+
 /* Capture Moments Section */
 /* Gallery */
 .gallery {
@@ -521,7 +528,7 @@ section {
 
 /* Packages */
 .packages {
-  background-image: linear-gradient(135deg, rgba(26, 26, 26, 0.92) 0%, rgba(44, 62, 80, 0.92) 100%), url('https://images.unsplash.com/photo-1726994133940-1e029529cc12?fm=jpg&q=80&w=1600&auto=format&fit=crop');
+  background-image: linear-gradient(135deg, rgba(26, 26, 26, 0.92) 0%, rgba(44, 62, 80, 0.92) 100%), url('images/gallery/camera-package-bg.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
