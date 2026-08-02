@@ -483,7 +483,7 @@ section {
 }
 
 .service-card p {
-  color: var(--gray);
+  color: #555555;
   margin-bottom: 15px;
   font-size: 0.95rem;
   line-height: 1.6;
