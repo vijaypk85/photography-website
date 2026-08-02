@@ -278,63 +278,6 @@ section {
 }
 
 /* Capture Moments Section */
-.capture-moments {
-  background-color: var(--white);
-  padding: 60px 0;
-}
-
-.moments-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 25px;
-}
-
-@media (min-width: 1200px) {
-  .moments-grid {
-    grid-template-columns: repeat(9, 1fr);
-  }
-}
-
-@media (min-width: 900px) and (max-width: 1199px) {
-  .moments-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .moments-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.moment-card {
-  text-align: center;
-  padding: 20px 15px;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  background: #f9f9f9;
-  border: 2px solid transparent;
-}
-
-.moment-card:hover {
-  background: var(--light);
-  border-color: var(--primary);
-  transform: scale(1.05);
-}
-
-.moment-icon {
-  font-size: 3rem;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.moment-card h3 {
-  font-size: 0.95rem;
-  color: var(--secondary);
-  font-weight: 600;
-  margin: 0;
-}
-
 /* Gallery */
 .gallery {
   background: var(--white);

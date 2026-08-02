@@ -96,51 +96,6 @@
   </div>
 </section>
 
-<!-- We Capture Section -->
-<section class="capture-moments">
-  <div class="container">
-    <h2 class="section-title">We Capture All Your Special Moments</h2>
-    <div class="moments-grid">
-      <div class="moment-card">
-        <div class="moment-icon">🎂</div>
-        <h3>Birthday</h3>
-      </div>
-      <div class="moment-card">
-        <div class="moment-icon">🏡</div>
-        <h3>Housewarming</h3>
-      </div>
-      <div class="moment-card">
-        <div class="moment-icon">👶</div>
-        <h3>Baby Shower</h3>
-      </div>
-      <div class="moment-card">
-        <div class="moment-icon">💍</div>
-        <h3>Engagement</h3>
-      </div>
-      <div class="moment-card">
-        <div class="moment-icon">💒</div>
-        <h3>Wedding</h3>
-      </div>
-      <div class="moment-card">
-        <div class="moment-icon">👨‍👩‍👧‍👦</div>
-        <h3>Family</h3>
-      </div>
-      <div class="moment-card">
-        <div class="moment-icon">🏢</div>
-        <h3>Corporate Events</h3>
-      </div>
-      <div class="moment-card">
-        <div class="moment-icon">🎓</div>
-        <h3>Graduation</h3>
-      </div>
-      <div class="moment-card">
-        <div class="moment-icon">🎉</div>
-        <h3>Private Celebrations</h3>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Gallery Section -->
 <section id="gallery" class="gallery">
   <div class="container">
@@ -152,7 +107,11 @@
       <button class="filter-btn" onclick="filterGallery('birthday')">Birthdays</button>
       <button class="filter-btn" onclick="filterGallery('housewarming')">Housewarmings</button>
       <button class="filter-btn" onclick="filterGallery('baby-shower')">Baby Showers</button>
+      <button class="filter-btn" onclick="filterGallery('engagement')">Engagements</button>
+      <button class="filter-btn" onclick="filterGallery('family')">Family</button>
       <button class="filter-btn" onclick="filterGallery('corporate')">Corporate</button>
+      <button class="filter-btn" onclick="filterGallery('graduation')">Graduation</button>
+      <button class="filter-btn" onclick="filterGallery('private')">Private Events</button>
     </div>
 
     <div class="gallery-grid" id="galleryGrid">
@@ -221,6 +180,62 @@
       </div>
       <div class="gallery-item" data-category="corporate" onclick="openLightbox(9)">
         <img src="https://images.unsplash.com/photo-1540575467063-178f50002cbc?w=400&h=300&fit=crop" alt="Corporate gathering">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+
+      <!-- Engagement Photos -->
+      <div class="gallery-item" data-category="engagement" onclick="openLightbox(10)">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=300&fit=crop" alt="Engagement celebration">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="engagement" onclick="openLightbox(11)">
+        <img src="https://images.unsplash.com/photo-1606011591411-07d9fe37b8a8?w=400&h=300&fit=crop" alt="Engagement moment">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+
+      <!-- Family Photos -->
+      <div class="gallery-item" data-category="family" onclick="openLightbox(12)">
+        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&h=300&fit=crop" alt="Family portrait">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="family" onclick="openLightbox(13)">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop" alt="Family gathering">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+
+      <!-- Graduation Photos -->
+      <div class="gallery-item" data-category="graduation" onclick="openLightbox(14)">
+        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=300&fit=crop" alt="Graduation ceremony">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="graduation" onclick="openLightbox(15)">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Graduation celebration">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+
+      <!-- Private Celebrations -->
+      <div class="gallery-item" data-category="private" onclick="openLightbox(16)">
+        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400&h=300&fit=crop" alt="Private celebration">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="private" onclick="openLightbox(17)">
+        <img src="https://images.unsplash.com/photo-1570143116591-ce75d2f6b633?w=400&h=300&fit=crop" alt="Private event">
         <div class="gallery-overlay">
           <span>View Photo</span>
         </div>

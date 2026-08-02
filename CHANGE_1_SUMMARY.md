@@ -1,56 +1,71 @@
-# ✅ CHANGE #1 & #2: Complete Updates
+# ✅ CHANGE #3: Merged "We Capture" into Gallery Filters
 
 ## Summary
-✅ Applied 8-feature "Why Choose Events by JORA" section
-✅ Added "We Capture All Your Special Moments" with 9 event types
+✅ Removed "We Capture All Your Special Moments" section
+✅ Added 4 new gallery filters: Engagement, Family, Graduation, Private Events
+✅ Added 8 new sample gallery items (2 for each new category)
 
 ---
 
 ## Changes Made
 
-### CHANGE #1: Why Choose Us (8 Features)
+### REMOVED:
+❌ "We Capture All Your Special Moments" section (redundant with gallery)
 
-**Before (4 Features):**
-🎯 Professional Quality | ⚡ Quick Turnaround | 💰 Affordable Pricing | 🎨 Personalized Service
+### ADDED TO GALLERY:
 
-**After (8 Features):**
-1. 📷 High Quality Photography - Crisp, Clear, Beautiful
-2. 🎬 Cinematic Videography - Relive your moments like a movie
-3. ⚡ Fast Delivery - On-time delivery you can trust
-4. ✨ Professionally Edited Photos - Perfectly edited for every moment
-5. 📚 Albums Available - Premium quality photo albums
-6. 🚁 Drone Coverage - A new perspective for every story
-7. 📦 Custom Packages - Tailored to your needs & budget
-8. 👥 Friendly & Experienced Team - We make you feel confident
+**New Gallery Filter Buttons:**
+1. Engagements
+2. Family
+3. Graduation
+4. Private Events
+
+**New Gallery Items (with sample Unsplash images):**
+- 2 Engagement photos
+- 2 Family photos
+- 2 Graduation photos
+- 2 Private celebration photos
+
+**Total Gallery Items Now: 18** (was 10)
 
 ---
 
-### CHANGE #2: We Capture All Your Special Moments (9 Event Types)
+## Gallery Filter Layout
 
-**New Section Added:**
-- 🎂 Birthday
-- 🏡 Housewarming
-- 👶 Baby Shower
-- 💍 Engagement
-- 💒 Wedding
-- 👨‍👩‍👧‍👦 Family
-- 🏢 Corporate Events
-- 🎓 Graduation
-- 🎉 Private Celebrations
+**All Filters:**
+All | Weddings | Birthdays | Housewarmings | Baby Showers | Engagements | Family | Corporate | Graduation | Private Events
 
-**Location:** Between "Why Choose Us" and "Gallery" sections
+**Responsive:**
+- Desktop: All 10 filters visible
+- Tablet: 2 rows of filters
+- Mobile: Scroll horizontally
 
 ---
 
 ## 📁 Files Updated
 
 **index.html**
-- Lines 50-97: 8-feature "Why Choose Events by JORA" section
-- Lines 98-121: NEW "We Capture All Your Special Moments" section with 9 event types
+- Line 50-97: 8-feature "Why Choose Events by JORA"
+- Line 99-113: Expanded gallery filters (10 categories)
+- Line 117-236: 18 gallery items with sample Unsplash images
 
 **style.css**
-- Lines 230-247: Updated .features-grid for 8 cards
-- Lines 280-339: NEW .capture-moments styling with responsive 9-6-3 layout
+- Removed: .capture-moments section (lines 281-337)
+- Removed: .moments-grid styling
+- Removed: .moment-card styling
+- Kept: All gallery and filter styling
+
+---
+
+## 🖼️ Sample Images
+
+All new gallery items use free Unsplash placeholder images:
+- Engagement: Professional engagement photos
+- Family: Family portrait/gathering photos
+- Graduation: Graduation ceremony photos
+- Private Events: Celebration photos
+
+**You can replace these anytime** with your own images!
 
 ---
 
@@ -65,57 +80,137 @@
    - index-updated.html → index.html
    - style-updated.css → style.css
 
-3. Refresh:
+3. Test Locally:
    Ctrl+Shift+R
+   (Click gallery filters, see all 10 categories work!)
 
-4. Push to GitHub:
+4. Replace Images Later:
+   - Add your photos to images/gallery/
+   - Update image paths in index.html
+   - Example: src="./images/gallery/engagement-01.jpg"
+
+5. Push to GitHub:
    git add .
-   git commit -m "Change #1-2: Add Why Choose + We Capture sections"
+   git commit -m "Change #3: Merge We Capture into Gallery, add 10 filters"
    git push origin main
 ```
 
-Website updates automatically! ✨
-
 ---
 
-## 💻 Responsive Layouts
+## 📊 Gallery Structure
 
-### Why Choose Us (8 Features):
-| Screen | Layout |
-|--------|--------|
-| Desktop (1200px+) | 4 cols × 2 rows |
-| Tablet (900-1199px) | 3 columns |
-| Mobile | Auto-responsive |
+**10 Event Categories:**
+1. Wedding (4 items)
+2. Birthday (2 items)
+3. Housewarming (2 items)
+4. Baby Shower (2 items)
+5. Engagement (2 items) ✨ NEW
+6. Family (2 items) ✨ NEW
+7. Corporate (2 items)
+8. Graduation (2 items) ✨ NEW
+9. Private Events (2 items) ✨ NEW
 
-### We Capture Moments (9 Events):
-| Screen | Layout |
-|--------|--------|
-| Desktop (1200px+) | 9 columns (1 row) |
-| Tablet (900-1199px) | 6 columns |
-| Mobile | 3 columns |
+**Total: 18 gallery items**
 
 ---
 
 ## ✨ What You'll See
 
-**Home → Gallery Flow:**
+**Homepage Flow:**
 1. Hero section
-2. ✨ Why Choose Events by JORA (8 features in 4-col grid)
-3. ✨ We Capture All Your Special Moments (9 event icons)
-4. Gallery section
-5. Services
-6. Contact
+2. Why Choose Events by JORA (8 features)
+3. Our Recent Work Gallery ↓
+   - 10 category filters
+   - 18 sample photos
+   - Click filter → See only that category
+   - Click photo → See lightbox
 
 ---
 
-## 🎯 Next Changes Available
+## 🔄 Replace Sample Images Later
+
+To replace sample images with your own:
+
+**Step 1: Add your photos**
+```
+photography-website/images/gallery/
+├── engagement-01.jpg
+├── engagement-02.jpg
+├── family-01.jpg
+├── family-02.jpg
+├── graduation-01.jpg
+├── graduation-02.jpg
+├── private-01.jpg
+└── private-02.jpg
+```
+
+**Step 2: Update HTML image paths**
+Find and replace in index.html:
+```html
+Before:
+src="https://images.unsplash.com/..."
+
+After:
+src="./images/gallery/engagement-01.jpg"
+```
+
+**Step 3: Commit and push**
+```bash
+git add .
+git commit -m "Replace sample images with real photos"
+git push origin main
+```
+
+---
+
+## 📱 Responsive Gallery Filters
+
+**Desktop:**
+```
+[All] [Wedding] [Birthday] [Housewarming] [Baby Shower] 
+[Engagement] [Family] [Corporate] [Graduation] [Private]
+```
+
+**Tablet:**
+```
+[All] [Wedding] [Birthday] [Housewarming] [Baby Shower]
+[Engagement] [Family] [Corporate] [Graduation] [Private]
+```
+
+**Mobile:**
+Horizontal scroll to see all filters
+
+---
+
+## 🎯 Benefits
+
+✅ **Cleaner design** - One section instead of two
+✅ **Better UX** - Gallery filters show all event types
+✅ **Professional** - 18 sample photos demonstrate capabilities
+✅ **Easy to update** - Replace images whenever you want
+✅ **Fully responsive** - Works on all devices
+
+---
+
+## 📋 Summary of All Changes
+
+| Change | Status | Details |
+|--------|--------|---------|
+| 8-feature Why Choose | ✅ Done | Professional features section |
+| Remove We Capture | ✅ Done | Eliminated redundant section |
+| Add 4 new filters | ✅ Done | Engagement, Family, Graduation, Private |
+| Add 8 sample items | ✅ Done | 2 per new category |
+| Sample images | ✅ Done | Unsplash placeholders (replaceable) |
+
+---
+
+## 🚀 Next Changes Available
 
 - [ ] Gold + Dark Blue color scheme
-- [ ] Add pricing section with packages
-- [ ] Add more event types to gallery filters
-- [ ] Update typography with professional fonts
-- [ ] Add WhatsApp button
+- [ ] Add pricing section
+- [ ] Update typography
+- [ ] Add WhatsApp contact button
 - [ ] Add testimonials section
-- [ ] Add trust badges/ratings
+- [ ] Add trust badges
 
-Just ask for next change! 🚀
+Just ask! 🎨
