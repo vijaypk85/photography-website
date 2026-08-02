@@ -8,385 +8,391 @@
   <title>Moments Captured - Professional Photography & Event Management</title>
   <link rel="stylesheet" href="style.css">
 </head>
+<a href="https://wa.me/919952785802?text=Hi%20there!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+   class="whatsapp-icon" target="_blank" aria-label="Chat with us on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+</a>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="container">
-      <div class="navbar-content">
-        <div class="logo">
-          <span class="logo-icon">📸</span>
-          <span class="logo-text">EventsByJORA</span>
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="container">
+
+    <div class="navbar-content">
+      <div class="logo">
+        <span class="logo-icon">📸</span>
+        <span class="logo-text">EventsByJORA</span>
+      </div>
+      <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" onclick="smoothScroll('#home')">Home</a></li>
+        <li><a href="#gallery" onclick="smoothScroll('#gallery')">Gallery</a></li>
+        <li><a href="#services" onclick="smoothScroll('#services')">Services</a></li>
+        <li><a href="#contact" onclick="smoothScroll('#contact')">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>Your Special Moments, Perfectly Captured</h1>
+    <p>Professional photography for weddings, birthdays, housewarmings, baby showers & corporate events</p>
+    <button class="cta-btn" onclick="smoothScroll('#contact')">Book Your Event</button>
+  </div>
+  <div class="hero-overlay"></div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="why-us">
+  <div class="container">
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Professional Quality</h3>
+        <p>High-resolution images with expert editing and professional retouching for every moment</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Quick Turnaround</h3>
+        <p>Edited photos delivered within 1-2 weeks of your event</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Affordable Pricing</h3>
+        <p>Competitive rates for all types of events and budgets</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>Personalized Service</h3>
+        <p>Customized packages tailored to your specific needs and vision</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="gallery">
+  <div class="container">
+    <h2 class="section-title">Our Recent Work</h2>
+
+    <div class="gallery-filters">
+      <button class="filter-btn active" onclick="filterGallery('all')">All</button>
+      <button class="filter-btn" onclick="filterGallery('wedding')">Weddings</button>
+      <button class="filter-btn" onclick="filterGallery('birthday')">Birthdays</button>
+      <button class="filter-btn" onclick="filterGallery('housewarming')">Housewarmings</button>
+      <button class="filter-btn" onclick="filterGallery('baby-shower')">Baby Showers</button>
+      <button class="filter-btn" onclick="filterGallery('corporate')">Corporate</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Wedding Photos -->
+      <div class="gallery-item" data-category="wedding" onclick="openLightbox(0)">
+        <img src="./images/gallery/wedding-01.jpg" alt="Beautiful wedding ceremony">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
         </div>
-        <button class="menu-toggle" id="menuToggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#home" onclick="smoothScroll('#home')">Home</a></li>
-          <li><a href="#gallery" onclick="smoothScroll('#gallery')">Gallery</a></li>
-          <li><a href="#services" onclick="smoothScroll('#services')">Services</a></li>
-          <li><a href="#contact" onclick="smoothScroll('#contact')">Contact</a></li>
+      </div>
+      <div class="gallery-item" data-category="wedding" onclick="openLightbox(1)">
+        <img src="./images/gallery/wedding-02.jpg" alt="Wedding reception celebration">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+
+      <!-- Birthday Photos -->
+      <div class="gallery-item" data-category="birthday" onclick="openLightbox(2)">
+        <img src="./images/gallery/birthday-01.jpg" alt="Birthday party celebration">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="birthday" onclick="openLightbox(3)">
+        <img src="./images/gallery/birthday-02.jpg" alt="Birthday cake and guests">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+
+      <!-- Housewarming Photos -->
+      <div class="gallery-item" data-category="housewarming" onclick="openLightbox(4)">
+        <img src="./images/gallery/housewarming-01.jpg" alt="Housewarming party">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="housewarming" onclick="openLightbox(5)">
+        <img src="./images/gallery/housewarming-01.jpg" alt="New home celebration">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+
+      <!-- Baby Shower Photos -->
+      <div class="gallery-item" data-category="baby-shower" onclick="openLightbox(6)">
+        <img src="./images/gallery/baby-shower-01.jpg" alt="Baby shower celebration">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="baby-shower" onclick="openLightbox(7)">
+        <img src="./images/gallery/baby-shower-02.jpg" alt="Baby shower decorations">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+
+      <!-- Corporate Photos -->
+      <div class="gallery-item" data-category="corporate" onclick="openLightbox(8)">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" alt="Corporate event">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="corporate" onclick="openLightbox(9)">
+        <img src="https://images.unsplash.com/photo-1540575467063-178f50002cbc?w=400&h=300&fit=crop" alt="Corporate gathering">
+        <div class="gallery-overlay">
+          <span>View Photo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close">&times;</span>
+  <img class="lightbox-image" src="" alt="">
+  <button class="lightbox-prev" onclick="previousImage(event)">❮</button>
+  <button class="lightbox-next" onclick="nextImage(event)">❯</button>
+</div>
+
+<!-- Services Section -->
+<section id="services" class="services">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">💍</div>
+        <h3>Wedding Photography</h3>
+        <p>Complete wedding day coverage including pre-wedding, ceremony, and reception. Professional editing of 400+ photos.</p>
+        <p class="service-price">₹20,000 - ₹50,000</p>
+        <p class="service-duration">Full day coverage</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎂</div>
+        <h3>Birthday Photography</h3>
+        <p>Capture all the fun and excitement of the celebration. 3-4 hours coverage with 150-200 professionally edited photos.</p>
+        <p class="service-price">₹5,000 - ₹12,000</p>
+        <p class="service-duration">3-4 hours coverage</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🏡</div>
+        <h3>Housewarming Photography</h3>
+        <p>Document your new home and celebration moments. 2-3 hours coverage with 100-150 edited photos included.</p>
+        <p class="service-price">₹4,000 - ₹10,000</p>
+        <p class="service-duration">2-3 hours coverage</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">👶</div>
+        <h3>Baby Shower Coverage</h3>
+        <p>Capture precious moments with family and friends. 2-3 hours professional coverage with polished editing.</p>
+        <p class="service-price">₹4,000 - ₹10,000</p>
+        <p class="service-duration">2-3 hours coverage</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3>Corporate Events</h3>
+        <p>Professional coverage of conferences, product launches, team celebrations, and corporate gatherings.</p>
+        <p class="service-price">₹8,000 - ₹25,000</p>
+        <p class="service-duration">Custom duration</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📚</div>
+        <h3>Album Design</h3>
+        <p>Premium quality photo albums beautifully designed and professionally printed for your collection.</p>
+        <p class="service-price">₹3,000 - ₹8,000</p>
+        <p class="service-duration">Custom sizes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"The wedding photos were absolutely stunning! Every precious moment was captured perfectly. The photographer was professional and made us feel comfortable. Highly recommended!"</p>
+        <p class="author">— Priya & Arjun</p>
+        <p class="event">Wedding Photography</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Best birthday party photos ever! The photographer captured all the fun and excitement. Made everyone feel relaxed and comfortable. Can't wait to book for the next party!"</p>
+        <p class="author">— Aisha</p>
+        <p class="event">Birthday Photography</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Perfect housewarming coverage! The photos beautifully captured our new home and all the celebration moments. Quick turnaround on editing, excellent quality. Highly satisfied!"</p>
+        <p class="author">— Rahul & Neha</p>
+        <p class="event">Housewarming Photography</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <div class="info-item">
+          <span>📧</span>
+          <div>
+            <p class="info-label">Email</p>
+            <p>vijay.pk179@gmail.com</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span>📱</span>
+          <div>
+            <p class="info-label">Phone</p>
+            <p>+91 9952785802</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span>📍</span>
+          <div>
+            <p class="info-label">Location</p>
+            <p>Chennai, India</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span>⏰</span>
+          <div>
+            <p class="info-label">Available Hours</p>
+            <p>Monday - Sunday, 9 AM - 9 PM</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required placeholder="Your full name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required placeholder="your@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" required placeholder="+91 9876543210">
+        </div>
+
+        <div class="form-group">
+          <label for="event_type">Event Type *</label>
+          <select id="event_type" name="event_type" required>
+            <option value="">Select an event type</option>
+            <option value="wedding">Wedding</option>
+            <option value="birthday">Birthday</option>
+            <option value="housewarming">Housewarming</option>
+            <option value="baby_shower">Baby Shower</option>
+            <option value="corporate">Corporate Event</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="event_date">Event Date *</label>
+          <input type="date" id="event_date" name="event_date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="budget">Budget Range *</label>
+          <select id="budget" name="budget" required>
+            <option value="">Select budget range</option>
+            <option value="5000-10000">₹5,000 - ₹10,000</option>
+            <option value="10000-20000">₹10,000 - ₹20,000</option>
+            <option value="20000-50000">₹20,000 - ₹50,000</option>
+            <option value="50000+">₹50,000+</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Tell us about your event *</label>
+          <textarea id="message" name="message" required placeholder="Describe your event and what you're looking for..." rows="5"></textarea>
+        </div>
+
+        <button type="submit" class="cta-btn form-submit">Send Inquiry</button>
+        <p class="form-note">We'll respond to your inquiry within 24 hours.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <p>Moments Captured is a professional photography service dedicated to capturing your special moments with excellence and creativity.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Your Special Moments, Perfectly Captured</h1>
-      <p>Professional photography for weddings, birthdays, housewarmings, baby showers & corporate events</p>
-      <button class="cta-btn" onclick="smoothScroll('#contact')">Book Your Event</button>
-    </div>
-    <div class="hero-overlay"></div>
-  </section>
-
-  <!-- Why Choose Us -->
-  <section class="why-us">
-    <div class="container">
-      <h2 class="section-title">Why Choose Us</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3>Professional Quality</h3>
-          <p>High-resolution images with expert editing and professional retouching for every moment</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Quick Turnaround</h3>
-          <p>Edited photos delivered within 1-2 weeks of your event</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💰</div>
-          <h3>Affordable Pricing</h3>
-          <p>Competitive rates for all types of events and budgets</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎨</div>
-          <h3>Personalized Service</h3>
-          <p>Customized packages tailored to your specific needs and vision</p>
+      <div class="footer-section">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Wedding Photography</a></li>
+          <li><a href="#services">Birthday Photography</a></li>
+          <li><a href="#services">Corporate Events</a></li>
+          <li><a href="#services">Album Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://facebook.com/eventsbyjora" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/eventsbyjora/" target="_blank">Instagram</a>
+          <a href="https://www.youtube.com/@eventsbyjora/shorts" target="_blank">YouTube</a>
         </div>
       </div>
+
     </div>
-  </section>
-
-  <!-- Gallery Section -->
-  <section id="gallery" class="gallery">
-    <div class="container">
-      <h2 class="section-title">Our Recent Work</h2>
-      
-      <div class="gallery-filters">
-        <button class="filter-btn active" onclick="filterGallery('all')">All</button>
-        <button class="filter-btn" onclick="filterGallery('wedding')">Weddings</button>
-        <button class="filter-btn" onclick="filterGallery('birthday')">Birthdays</button>
-        <button class="filter-btn" onclick="filterGallery('housewarming')">Housewarmings</button>
-        <button class="filter-btn" onclick="filterGallery('baby-shower')">Baby Showers</button>
-        <button class="filter-btn" onclick="filterGallery('corporate')">Corporate</button>
-      </div>
-
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Wedding Photos -->
-        <div class="gallery-item" data-category="wedding" onclick="openLightbox(0)">
-    <img src="./images/gallery/wedding-01.jpg" alt="Beautiful wedding ceremony">
-    <div class="gallery-overlay">
-      <span>View Photo</span>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Moments Captured. All rights reserved.</p>
     </div>
   </div>
-        <div class="gallery-item" data-category="wedding" onclick="openLightbox(1)">
-          <img src="./images/gallery/wedding-02.jpg" alt="Wedding reception celebration">
-          <div class="gallery-overlay">
-            <span>View Photo</span>
-          </div>
-        </div>
+</footer>
 
-        <!-- Birthday Photos -->
-        <div class="gallery-item" data-category="birthday" onclick="openLightbox(2)">
-          <img src="./images/gallery/birthday-01.jpg" alt="Birthday party celebration">
-          <div class="gallery-overlay">
-            <span>View Photo</span>
-          </div>
-        </div>
-        <div class="gallery-item" data-category="birthday" onclick="openLightbox(3)">
-          <img src="./images/gallery/birthday-02.jpg" alt="Birthday cake and guests">
-          <div class="gallery-overlay">
-            <span>View Photo</span>
-          </div>
-        </div>
-
-        <!-- Housewarming Photos -->
-        <div class="gallery-item" data-category="housewarming" onclick="openLightbox(4)">
-          <img src="./images/gallery/housewarming-01.jpg" alt="Housewarming party">
-          <div class="gallery-overlay">
-            <span>View Photo</span>
-          </div>
-        </div>
-        <div class="gallery-item" data-category="housewarming" onclick="openLightbox(5)">
-          <img src="./images/gallery/housewarming-01.jpg" alt="New home celebration">
-          <div class="gallery-overlay">
-            <span>View Photo</span>
-          </div>
-        </div>
-
-        <!-- Baby Shower Photos -->
-        <div class="gallery-item" data-category="baby-shower" onclick="openLightbox(6)">
-          <img src="./images/gallery/baby-shower-01.jpg" alt="Baby shower celebration">
-          <div class="gallery-overlay">
-            <span>View Photo</span>
-          </div>
-        </div>
-        <div class="gallery-item" data-category="baby-shower" onclick="openLightbox(7)">
-          <img src="./images/gallery/baby-shower-02.jpg" alt="Baby shower decorations">
-          <div class="gallery-overlay">
-            <span>View Photo</span>
-          </div>
-        </div>
-
-        <!-- Corporate Photos -->
-        <div class="gallery-item" data-category="corporate" onclick="openLightbox(8)">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" alt="Corporate event">
-          <div class="gallery-overlay">
-            <span>View Photo</span>
-          </div>
-        </div>
-        <div class="gallery-item" data-category="corporate" onclick="openLightbox(9)">
-          <img src="https://images.unsplash.com/photo-1540575467063-178f50002cbc?w=400&h=300&fit=crop" alt="Corporate gathering">
-          <div class="gallery-overlay">
-            <span>View Photo</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-    <span class="lightbox-close">&times;</span>
-    <img class="lightbox-image" src="" alt="">
-    <button class="lightbox-prev" onclick="previousImage(event)">❮</button>
-    <button class="lightbox-next" onclick="nextImage(event)">❯</button>
-  </div>
-
-  <!-- Services Section -->
-  <section id="services" class="services">
-    <div class="container">
-      <h2 class="section-title">Our Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">💍</div>
-          <h3>Wedding Photography</h3>
-          <p>Complete wedding day coverage including pre-wedding, ceremony, and reception. Professional editing of 400+ photos.</p>
-          <p class="service-price">₹20,000 - ₹50,000</p>
-          <p class="service-duration">Full day coverage</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🎂</div>
-          <h3>Birthday Photography</h3>
-          <p>Capture all the fun and excitement of the celebration. 3-4 hours coverage with 150-200 professionally edited photos.</p>
-          <p class="service-price">₹5,000 - ₹12,000</p>
-          <p class="service-duration">3-4 hours coverage</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🏡</div>
-          <h3>Housewarming Photography</h3>
-          <p>Document your new home and celebration moments. 2-3 hours coverage with 100-150 edited photos included.</p>
-          <p class="service-price">₹4,000 - ₹10,000</p>
-          <p class="service-duration">2-3 hours coverage</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">👶</div>
-          <h3>Baby Shower Coverage</h3>
-          <p>Capture precious moments with family and friends. 2-3 hours professional coverage with polished editing.</p>
-          <p class="service-price">₹4,000 - ₹10,000</p>
-          <p class="service-duration">2-3 hours coverage</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🏢</div>
-          <h3>Corporate Events</h3>
-          <p>Professional coverage of conferences, product launches, team celebrations, and corporate gatherings.</p>
-          <p class="service-price">₹8,000 - ₹25,000</p>
-          <p class="service-duration">Custom duration</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">📚</div>
-          <h3>Album Design</h3>
-          <p>Premium quality photo albums beautifully designed and professionally printed for your collection.</p>
-          <p class="service-price">₹3,000 - ₹8,000</p>
-          <p class="service-duration">Custom sizes</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="testimonials">
-    <div class="container">
-      <h2 class="section-title">What Our Clients Say</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"The wedding photos were absolutely stunning! Every precious moment was captured perfectly. The photographer was professional and made us feel comfortable. Highly recommended!"</p>
-          <p class="author">— Priya & Arjun</p>
-          <p class="event">Wedding Photography</p>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"Best birthday party photos ever! The photographer captured all the fun and excitement. Made everyone feel relaxed and comfortable. Can't wait to book for the next party!"</p>
-          <p class="author">— Aisha</p>
-          <p class="event">Birthday Photography</p>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"Perfect housewarming coverage! The photos beautifully captured our new home and all the celebration moments. Quick turnaround on editing, excellent quality. Highly satisfied!"</p>
-          <p class="author">— Rahul & Neha</p>
-          <p class="event">Housewarming Photography</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2 class="section-title">Get in Touch</h2>
-      <div class="contact-wrapper">
-        <div class="contact-info">
-          <h3>Contact Information</h3>
-          <div class="info-item">
-            <span>📧</span>
-            <div>
-              <p class="info-label">Email</p>
-              <p>contact@momentscaptured.com</p>
-            </div>
-          </div>
-          <div class="info-item">
-            <span>📱</span>
-            <div>
-              <p class="info-label">Phone</p>
-              <p>+91 9876543210</p>
-            </div>
-          </div>
-          <div class="info-item">
-            <span>📍</span>
-            <div>
-              <p class="info-label">Location</p>
-              <p>Puducherry, India</p>
-            </div>
-          </div>
-          <div class="info-item">
-            <span>⏰</span>
-            <div>
-              <p class="info-label">Available Hours</p>
-              <p>Monday - Sunday, 9 AM - 9 PM</p>
-            </div>
-          </div>
-        </div>
-
-        <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
-          <div class="form-group">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" required placeholder="Your full name">
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" required placeholder="your@email.com">
-          </div>
-
-          <div class="form-group">
-            <label for="phone">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" required placeholder="+91 9876543210">
-          </div>
-
-          <div class="form-group">
-            <label for="event_type">Event Type *</label>
-            <select id="event_type" name="event_type" required>
-              <option value="">Select an event type</option>
-              <option value="wedding">Wedding</option>
-              <option value="birthday">Birthday</option>
-              <option value="housewarming">Housewarming</option>
-              <option value="baby_shower">Baby Shower</option>
-              <option value="corporate">Corporate Event</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="event_date">Event Date *</label>
-            <input type="date" id="event_date" name="event_date" required>
-          </div>
-
-          <div class="form-group">
-            <label for="budget">Budget Range *</label>
-            <select id="budget" name="budget" required>
-              <option value="">Select budget range</option>
-              <option value="5000-10000">₹5,000 - ₹10,000</option>
-              <option value="10000-20000">₹10,000 - ₹20,000</option>
-              <option value="20000-50000">₹20,000 - ₹50,000</option>
-              <option value="50000+">₹50,000+</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Tell us about your event *</label>
-            <textarea id="message" name="message" required placeholder="Describe your event and what you're looking for..." rows="5"></textarea>
-          </div>
-
-          <button type="submit" class="cta-btn form-submit">Send Inquiry</button>
-          <p class="form-note">We'll respond to your inquiry within 24 hours.</p>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>About Us</h4>
-          <p>Moments Captured is a professional photography service dedicated to capturing your special moments with excellence and creativity.</p>
-        </div>
-        <div class="footer-section">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="#services">Wedding Photography</a></li>
-            <li><a href="#services">Birthday Photography</a></li>
-            <li><a href="#services">Corporate Events</a></li>
-            <li><a href="#services">Album Design</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Follow Us</h4>
-          <div class="social-links">
-            <a href="https://facebook.com" target="_blank">Facebook</a>
-            <a href="https://instagram.com" target="_blank">Instagram</a>
-            <a href="https://youtube.com" target="_blank">YouTube</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2024 Moments Captured. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

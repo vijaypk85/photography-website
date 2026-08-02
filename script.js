@@ -1,19 +1,6 @@
 let currentImageIndex = 0;
 let visibleImages = [];
 
-const galleryImages = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1606216174052-f3d0b8e4bfa0?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1558636508-e0db3814bd20?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1585254475919-7ac8620988e3?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1565538810185-dbc477fc2e4b?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1573139662582-8e80e3849f72?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1584095268862-d1f17dabf8e8?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1540575467063-178f50002cbc?w=400&h=300&fit=crop'
-];
-
 document.addEventListener('DOMContentLoaded', function() {
   setupMenuToggle();
   updateVisibleImages();
@@ -36,7 +23,12 @@ function setupMenuToggle() {
 }
 
 function smoothScroll(target) {
-  event.preventDefault();
+  // Only call preventDefault if we're inside a real, still-active event
+  // (e.g. a nav link click). Skip it when called later, like after a
+  // fetch() resolves, where the global "event" no longer exists.
+  if (typeof event !== 'undefined' && event && typeof event.preventDefault === 'function') {
+    event.preventDefault();
+  }
   const element = document.querySelector(target);
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
@@ -76,58 +68,57 @@ function updateVisibleImages() {
   });
 }
 
+// ===== FIXED LIGHTBOX =====
 function openLightbox(index) {
-  updateVisibleImages();
-  currentImageIndex = index;
+  const galleryItems = document.querySelectorAll('.gallery-item img');
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.querySelector('.lightbox-image');
-  
-  const visibleItems = document.querySelectorAll('.gallery-item:not([style*="display: none"])');
-  let actualIndex = 0;
-  
-  for (let i = 0; i < document.querySelectorAll('.gallery-item').length; i++) {
-    if (document.querySelectorAll('.gallery-item')[i] === visibleItems[index]) {
-      actualIndex = i;
-      break;
-    }
-  }
 
-  if (actualIndex >= 0 && actualIndex < galleryImages.length) {
-    lightboxImage.src = galleryImages[actualIndex];
-    currentImageIndex = actualIndex;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
+  if (galleryItems[index]) {
+    lightboxImage.src = galleryItems[index].src;
+    currentImageIndex = index;
+    lightbox.classList.add('active');  // ← FIX: Add class instead of style.display
+    document.body.style.overflow = 'hidden'; // Prevent page scroll
   }
 }
 
 function closeLightbox(event) {
-  if (event.target.id === 'lightbox') {
-    document.getElementById('lightbox').classList.remove('active');
-    document.body.style.overflow = 'auto';
+  const lightbox = document.getElementById('lightbox');
+  // Only close if clicking background, not buttons/image
+  if (event.target === lightbox || event.target.classList.contains('lightbox-close')) {
+    lightbox.classList.remove('active');  // ← FIX: Remove class instead of style.display
+    document.body.style.overflow = 'auto';  // Allow page scroll again
   }
 }
 
 function nextImage(event) {
   event.stopPropagation();
-  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-  document.querySelector('.lightbox-image').src = galleryImages[currentImageIndex];
+  const galleryItems = document.querySelectorAll('.gallery-item img');
+  currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+  document.querySelector('.lightbox-image').src = galleryItems[currentImageIndex].src;
 }
 
 function previousImage(event) {
   event.stopPropagation();
-  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-  document.querySelector('.lightbox-image').src = galleryImages[currentImageIndex];
+  const galleryItems = document.querySelectorAll('.gallery-item img');
+  currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+  document.querySelector('.lightbox-image').src = galleryItems[currentImageIndex].src;
 }
 
+// ===== KEYBOARD CONTROLS (Now Works!) =====
 document.addEventListener('keydown', function(event) {
   const lightbox = document.getElementById('lightbox');
-  if (lightbox.classList.contains('active')) {
+  if (lightbox.classList.contains('active')) {  // ← Now checks actual state
     if (event.key === 'ArrowRight') nextImage(event);
     if (event.key === 'ArrowLeft') previousImage(event);
-    if (event.key === 'Escape') closeLightbox({ target: lightbox });
+    if (event.key === 'Escape') {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
   }
 });
 
+// ===== FORM SUBMISSION WITH FORMSPREE =====
 function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -149,26 +140,53 @@ function handleFormSubmit(event) {
   console.log('Budget:', budget);
   console.log('Message:', message);
 
-  const subject = `Photography Inquiry from ${name}`;
-  const body = `
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Event Type: ${eventType}
-Event Date: ${eventDate}
-Budget: ${budget}
+  // Show loading state
+  const submitBtn = form.querySelector('.form-submit');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
 
-Message:
-${message}
-  `;
+  // Prepare form data
+  const formData = new FormData(form);
 
-  const mailtoLink = `mailto:contact@momentscaptured.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = mailtoLink;
+  // Try Formspree first (better for web)
+  fetch('https://formspree.io/f/mvzjbzbq', {  // ← UPDATE THIS WITH YOUR FORMSPREE ID
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(async response => {
+    if (response.ok) {
+      console.log('Form sent via Formspree successfully!');
+      showSuccessMessage();
+      form.reset();
 
-  showSuccessMessage();
-  form.reset();
+      // Reset button
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    } else {
+      // Log the exact reason Formspree rejected the submission
+      const errorBody = await response.json().catch(() => null);
+      console.error('Formspree responded with an error. Status:', response.status, 'Body:', errorBody);
+      throw new Error('Formspree failed with status ' + response.status);
+    }
+  })
+  .catch(error => {
+    // Log the REAL error so we can see what's actually going wrong
+    console.error('Formspree submission failed:', error);
+
+    // Show a visible error message instead of silently redirecting to mailto
+    showErrorMessage();
+
+    // Reset button
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  });
 }
 
+// ===== CUSTOM SUCCESS MESSAGE (Your Original Style) =====
 function showSuccessMessage() {
   const form = document.getElementById('contactForm');
   const successMsg = document.createElement('div');
@@ -189,9 +207,34 @@ function showSuccessMessage() {
   setTimeout(() => {
     successMsg.style.animation = 'slideUp 0.5s ease';
     setTimeout(() => successMsg.remove(), 500);
-  }, 4000);
+  }, 6000);
 }
 
+// ===== ERROR MESSAGE (shown if Formspree submission fails) =====
+function showErrorMessage() {
+  const form = document.getElementById('contactForm');
+  const errorMsg = document.createElement('div');
+  errorMsg.style.cssText = `
+    background: #e74c3c;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    animation: slideDown 0.5s ease;
+  `;
+  errorMsg.innerHTML = 'Sorry, something went wrong sending your inquiry. Please try again, or email us directly at <a href="mailto:mytechlearning85@gmail.com" style="color:#fff;text-decoration:underline;">mytechlearning85@gmail.com</a>.';
+
+  form.insertBefore(errorMsg, form.firstChild);
+
+  setTimeout(() => {
+    errorMsg.style.animation = 'slideUp 0.5s ease';
+    setTimeout(() => errorMsg.remove(), 500);
+  }, 6000);
+}
+
+// ===== ANIMATIONS =====
 const style = document.createElement('style');
 style.textContent = `
   @keyframes slideDown {
